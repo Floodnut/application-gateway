@@ -1,0 +1,11 @@
+zuul:
+  routes:
+    auth:
+      path: /auth/**
+      serviceId: auth
+    rocket:
+      path: /rocket/**
+      serviceId: rocket
+    hubble:
+      path: /hubble/**
+      serviceId: hubble

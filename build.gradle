@@ -27,11 +27,19 @@ dependencies {
     // Spring Boot
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
-    compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-    annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // https://mvnrepository.com/artifact/org.projectlombok/lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security
+    implementation 'org.springframework.boot:spring-boot-starter-security:2.7.10'
+
+    // https://mvnrepository.com/artifact/org.springframework.security.oauth/spring-security-oauth2
+    implementation 'org.springframework.security.oauth:spring-security-oauth2:2.5.2.RELEASE'
 
     // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-zuul
     implementation 'org.springframework.cloud:spring-cloud-starter-zuul:1.4.7.RELEASE'
