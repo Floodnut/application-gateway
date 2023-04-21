@@ -22,19 +22,26 @@ ext {
     set('springCloudVersion', "2021.0.6")
 }
 
+
+
 dependencies {
 
     // Spring Boot
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
-    compileOnly 'org.projectlombok:lombok'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-    annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-    // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-zuul
-    implementation 'org.springframework.cloud:spring-cloud-starter-zuul:1.4.7.RELEASE'
+    // https://mvnrepository.com/artifact/org.projectlombok/lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-gateway
+    implementation 'org.springframework.cloud:spring-cloud-starter-gateway:4.0.4'
+
+    // https://mvnrepository.com/artifact/com.netflix.eureka/eureka-client
+    runtimeOnly 'com.netflix.eureka:eureka-client:2.0.0'
 
 }
 

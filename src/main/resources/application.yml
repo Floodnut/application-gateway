@@ -1,0 +1,55 @@
+spring:
+  application:
+    name: initcloud-gateway
+
+  main:
+    web-application-type: reactive
+    allow-bean-definition-overriding: true
+
+  cloud:
+    gateway:
+      httpclient:
+        connect-timeout: 10000
+        response-timeout: 10s
+
+      default-filters:
+        - name: InitCloudFilter
+          args:
+            baseMessage: Init Cloud API
+            preLogger: true
+            postLogger: true
+
+      routes:
+        - id: dashboard
+          uri: http://localhost:5555
+          predicates:
+            - Path= /dashboard/**
+          filters:
+            - RewritePath=/dashboard, /
+
+        - id: rocket
+          uri: http://localhost:9090
+          predicates:
+            - Path= /rocket/**
+          filters:
+            - RewritePath=/rocket, /api/v1
+
+        - id: hubble
+          uri: http://localhost:8080
+          predicates:
+            - Path= /hubble/**
+          filters:
+            - RewritePath=/hubble, /api/v2
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - "gateway"
+
+  endpoint:
+    gateway:
+      enabled: true
+
+
