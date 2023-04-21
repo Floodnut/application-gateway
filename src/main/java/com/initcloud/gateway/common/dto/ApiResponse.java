@@ -15,30 +15,43 @@ import com.initcloud.gateway.common.exception.ApiException;
 @Getter
 public class ApiResponse<T> {
 
-	private char success;
+	private Character success;
+	private String from;
 	private T data;
 	private ErrorDto error;
 
 	@Builder
-	public ApiResponse(char success, T data, ErrorDto error) {
+	public ApiResponse(char success, String from, T data, ErrorDto error) {
 		this.success = success;
+		this.from = from;
 		this.data = data;
 		this.error = error;
 	}
 
-	public ApiResponse(@Nullable T data) {
+	public ApiResponse(String from, @Nullable T data) {
 		this.success = 'y';
+		this.from = from;
 		this.data = data;
 		this.error = null;
 	}
 
 	public static ResponseEntity<ApiResponse> throwException(ApiException e) {
 		return ResponseEntity.status(e.getErrorCode().getHttpStatus())
-			.body(ApiResponse.builder().success('n').data(null).error(new ErrorDto(e.getErrorCode())).build());
+			.body(ApiResponse.builder()
+				.success('n')
+				.from(null)
+				.data(null)
+				.error(new ErrorDto(e.getErrorCode()))
+				.build());
 	}
 
 	public static ResponseEntity<ApiResponse> throwException(Exception e) {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-			.body(ApiResponse.builder().success('n').data(null).error(new ErrorDto(ErrorCode.ERROR_5001)).build());
+			.body(ApiResponse.builder()
+				.success('n')
+				.from(null)
+				.data(null)
+				.error(new ErrorDto(ErrorCode.ERROR_5001))
+				.build());
 	}
 }
