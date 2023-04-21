@@ -1,8 +1,3 @@
-ribbon:
-  eureka:
-    enabled: false
-
-
 spring:
   application:
     name: initcloud-gateway
@@ -30,21 +25,21 @@ spring:
           predicates:
             - Path= /dashboard/**
           filters:
-            - RewritePath=/dashboard, </code>
+            - RewritePath=/dashboard, /
 
         - id: rocket
           uri: http://localhost:9090
           predicates:
             - Path= /rocket/**
           filters:
-            - RewritePath=/auth, /api/v1</code>
+            - RewritePath=/rocket, /api/v1
 
         - id: hubble
           uri: http://localhost:8080
           predicates:
             - Path= /hubble/**
           filters:
-            - RewritePath=/hubble, /api/v2</code>
+            - RewritePath=/hubble, /api/v2
 
 management:
   endpoints:
